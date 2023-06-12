@@ -1,0 +1,3 @@
+Emily,06/11/2023,Cake,210
+Emily,06/11/2023,cake,210
+Nate,06/09/2023,burger,540
