@@ -1,7 +1,6 @@
 package system.tracker.health.models;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 public class ExerciseActivity {
     private LocalDate date;

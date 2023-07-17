@@ -3,7 +3,6 @@ package system.tracker.health.models;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
 
 public class SleepRecord {
     private LocalTime startTime;
