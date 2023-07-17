@@ -1,25 +1,28 @@
 package system.tracker.health.models;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class ExerciseActivity {
-    private Date date;
+    private LocalDate date;
     private String exerciseType;
+    private String category;
     private int duration;
     private int caloriesBurned;
 
-    public ExerciseActivity(Date date, String exerciseType, int duration, int caloriesBurned) {
+    public ExerciseActivity(LocalDate date, String exerciseType, String category, int duration, int caloriesBurned) {
         this.date = date;
         this.exerciseType = exerciseType;
+        this.category = category;
         this.duration = duration;
         this.caloriesBurned = caloriesBurned;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 
@@ -29,6 +32,14 @@ public class ExerciseActivity {
 
     public void setExerciseType(String exerciseType) {
         this.exerciseType = exerciseType;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public int getDuration() {
@@ -45,5 +56,16 @@ public class ExerciseActivity {
 
     public void setCaloriesBurned(int caloriesBurned) {
         this.caloriesBurned = caloriesBurned;
+    }
+
+    @Override
+    public String toString() {
+        return "ExerciseActivity{" +
+                "date=" + date +
+                ", exerciseType='" + exerciseType + '\'' +
+                ", category='" + category + '\'' +
+                ", duration=" + duration +
+                ", caloriesBurned=" + caloriesBurned +
+                '}';
     }
 }

@@ -1,58 +1,53 @@
 package system.tracker.health.models;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Date;
 
 public class SleepRecord {
-    private Date date;
-    private Date sleepTime;
-    private Date wakeUpTime;
-//    private String duration;
+    private LocalTime startTime;
+    private LocalTime endTime;
+    private long sleepDuration;
+    private LocalDate date;
 
-    public SleepRecord(Date date, Date sleepTime, Date wakeUpTime) {
+    public SleepRecord(LocalTime startTime, LocalTime endTime, LocalDate date) {
+        this.startTime = startTime;
+        this.endTime = endTime;
         this.date = date;
-        this.sleepTime = sleepTime;
-        this.wakeUpTime = wakeUpTime;
-//        calculateDuration();
+
+        Duration duration = Duration.between(startTime, endTime);
+
+        if (startTime.isAfter(endTime)) {
+            this.sleepDuration = duration.toHours() + 24;
+        } else {
+            this.sleepDuration = duration.toHours();
+        }
     }
 
-    public Date getDate() {
+    public LocalTime getStartTime() {
+        return startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return endTime;
+    }
+
+    public long getSleepDuration() {
+        return sleepDuration;
+    }
+
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    @Override
+    public String toString() {
+        return "SleepRecord{" +
+                "startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", sleepDuration=" + sleepDuration +
+                ", date=" + date +
+                '}';
     }
-
-    public Date getSleepTime() {
-        return sleepTime;
-    }
-
-    public void setSleepTime(Date sleepTime) {
-        this.sleepTime = sleepTime;
-//        calculateDuration();
-    }
-
-    public Date getWakeUpTime() {
-        return wakeUpTime;
-    }
-
-    public void setWakeUpTime(Date wakeUpTime) {
-        this.wakeUpTime = wakeUpTime;
-//        calculateDuration();
-    }
-
-    public long getDuration() {
-        return wakeUpTime.getTime() - sleepTime.getTime();
-    }
-
-//    private void calculateDuration() {
-//        if (sleepTime != null && wakeUpTime != null) {
-//            long durationInMillis = wakeUpTime.getTime() - sleepTime.getTime();
-//            long hours = durationInMillis / (60 * 60 * 1000);
-//            long minutes = (durationInMillis / (60 * 1000)) % 60;
-//            duration = hours + " hours " + minutes + " minutes";
-//        } else {
-//            duration = null;
-//        }
-//    }
 }

@@ -1,44 +1,19 @@
 package system.tracker.health.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     private String username;
-    private int age;
-    private List<CalorieIntake> foodList;
-    private List<ExerciseActivity> exerciseList;
-    private List<SleepRecord> sleepList;
+    List<CalorieIntake> calorieIntakes;
+    private List<ExerciseActivity> exerciseActivities;
+    private List<SleepRecord> sleepRecords;
 
-    public User(String username, int age) {
+    public User(String username) {
         this.username = username;
-        this.age = age;
-        this.foodList = foodList;
-        this.exerciseList = exerciseList;
-        this.sleepList = sleepList;
-    }
-
-    public List<CalorieIntake> getFoodList() {
-        return foodList;
-    }
-
-    public void setFoodList(List<CalorieIntake> foodList) {
-        this.foodList = foodList;
-    }
-
-    public List<ExerciseActivity> getExerciseList() {
-        return exerciseList;
-    }
-
-    public void setExerciseList(List<ExerciseActivity> exerciseList) {
-        this.exerciseList = exerciseList;
-    }
-
-    public List<SleepRecord> getSleepList() {
-        return sleepList;
-    }
-
-    public void setSleepList(List<SleepRecord> sleepList) {
-        this.sleepList = sleepList;
+        this.calorieIntakes = new ArrayList<>();
+        this.exerciseActivities = new ArrayList<>();
+        this.sleepRecords = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -49,25 +24,51 @@ public class User {
         this.username = username;
     }
 
-    public int getAge() {
-        return age;
+    public List<CalorieIntake> getCalorieIntakes() {
+        return calorieIntakes;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setCalorieIntakes(List<CalorieIntake> calorieIntakes) {
+        this.calorieIntakes = calorieIntakes;
     }
 
-    public String toString(){
-        String user = username;
-        for(CalorieIntake food: foodList){
-            user += ", " + food.getFoodItem();
+    public List<ExerciseActivity> getExerciseActivities() {
+        return exerciseActivities;
+    }
+
+    public void setExerciseActivities(List<ExerciseActivity> exerciseActivities) {
+        this.exerciseActivities = exerciseActivities;
+    }
+
+    public List<SleepRecord> getSleepRecords() {
+        return sleepRecords;
+    }
+
+    public void setSleepRecords(List<SleepRecord> sleepRecords) {
+        this.sleepRecords = sleepRecords;
+    }
+
+    public int totalCaloriesBurned() {
+        int total = 0;
+        for (ExerciseActivity activity : getExerciseActivities()) {
+            total += activity.getCaloriesBurned();
         }
-        for(ExerciseActivity exercise: exerciseList){
-            user += ", " + exercise.getExerciseType();
+        return total;
+    }
+
+    public int totalCalories() {
+        int total = 0;
+        for (CalorieIntake intake : getCalorieIntakes()) {
+            total += intake.getCalories();
         }
-        for(SleepRecord sleep: sleepList){
-            user += ", " + sleep.getDuration();
+        return total;
+    }
+
+    public int totalHoursSlept() {
+        int total = 0;
+        for (SleepRecord record : getSleepRecords()) {
+            total += record.getSleepDuration();
         }
-        return user;
+        return total;
     }
 }
