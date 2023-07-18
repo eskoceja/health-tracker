@@ -7,7 +7,6 @@ import java.time.LocalDate;
 
 import java.util.Scanner;
 
-import static system.tracker.health.App.parseDate;
 
 public class ExerciseActivityManager {
     private User user;

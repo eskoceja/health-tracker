@@ -6,8 +6,6 @@ import system.tracker.health.models.User;
 import java.time.LocalDate;
 import java.util.Scanner;
 
-import static system.tracker.health.App.parseDate;
-
 public class CalorieIntakeManager {
     private User user;
     private Scanner scanner;
